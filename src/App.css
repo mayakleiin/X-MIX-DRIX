@@ -79,3 +79,8 @@ body {
   color: #ff4c4c;
   border: 1px solid #ff4c4c;
 }
+
+.status-bar .turn {
+  color: #ff4c4c;
+  font-weight: bold;
+}
