@@ -80,7 +80,7 @@ body {
   border: 1px solid #ff4c4c;
 }
 
-.status-bar .turn {
+.status-bar {
   color: #ff4c4c;
   font-weight: bold;
 }
