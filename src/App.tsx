@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import StatusBar from "./components/StatusBar";
+import GameBoard from "./components/GameBoard";
+import PlayAgain from "./components/PlayAgain";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [board, setBoard] = useState<(null | "X" | "O")[]>(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
+  const [winner, setWinner] = useState<"X" | "O" | "Tie" | null>(null);
+  const [winningSquares, setWinningSquares] = useState<number[] | null>(null);
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setIsXNext(true);
+    setWinner(null);
+    setWinningSquares(null);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <Header />
+      <StatusBar currentTurn={isXNext ? "X" : "O"} winner={winner} />
+      <GameBoard
+        board={board}
+        isXNext={isXNext}
+        setBoard={setBoard}
+        setIsXNext={setIsXNext}
+        setWinner={setWinner}
+        setWinningSquares={setWinningSquares}
+        winningSquares={winningSquares}
+      />
+      {winner && <PlayAgain onClick={resetGame} />}
+    </div>
+  );
+};
 
-export default App
+export default App;
