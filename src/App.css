@@ -1,6 +1,6 @@
 @font-face {
   font-family: "MechaRx20";
-  src: url("../public/MechaRx20Regular-j9Zy9.otf") format("opentype");
+  src: url("/MechaRx20Regular-j9Zy9.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
